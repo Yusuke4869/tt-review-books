@@ -1,0 +1,21 @@
+name: check
+on: [push, pull_request]
+
+jobs:
+  check:
+    name: check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up node.js environment
+        uses: actions/setup-node@main
+        with:
+          node-version: lts
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Check lint and format
+        run: pnpm run ci
