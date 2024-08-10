@@ -55,9 +55,10 @@ export const LoginForm: FC = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col gap-y-2 mb-3 w-3/5 lg:w-2/5 xl:w-1/4">
         <div className="flex flex-col gap-y-0.5">
-          <label>メールアドレス</label>
+          <label htmlFor="email">メールアドレス</label>
           <input
-            type="text"
+            id="email"
+            type="email"
             className="rounded-md border-2 border-gray-300 outline-none text-gray-900 p-1.5 focus:border-indigo-600"
             {...register("email", {
               required: true,
@@ -71,8 +72,9 @@ export const LoginForm: FC = () => {
           )}
         </div>
         <div className="flex flex-col gap-y-0.5">
-          <label>パスワード</label>
+          <label htmlFor="password">パスワード</label>
           <input
+            id="password"
             type="password"
             className="rounded-md border-2 border-gray-300 outline-none text-gray-900 p-1.5 focus:border-indigo-600"
             {...register("password", { required: true })}
