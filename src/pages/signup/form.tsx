@@ -86,7 +86,6 @@ export const SignUpForm: FC = () => {
             className="rounded-md border-2 border-gray-300 outline-none text-gray-900 p-1.5 focus:border-indigo-600"
             {...register("name", {
               required: true,
-              pattern: /^[a-zA-Z0-9_+-]+(.[a-zA-Z0-9_+-]+)*@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/,
             })}
           />
           {errors.name && <p className="text-red-500 text-sm">ユーザー名を入力してください</p>}
@@ -97,7 +96,10 @@ export const SignUpForm: FC = () => {
             id="email"
             type="email"
             className="rounded-md border-2 border-gray-300 outline-none text-gray-900 p-1.5 focus:border-indigo-600"
-            {...register("email", { required: true })}
+            {...register("email", {
+              required: true,
+              pattern: /^[a-zA-Z0-9_+-]+(.[a-zA-Z0-9_+-]+)*@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/,
+            })}
           />
           {errors.email && <p className="text-red-500 text-sm">正しいメールアドレスを入力してください</p>}
         </div>
