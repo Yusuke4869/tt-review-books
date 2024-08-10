@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
@@ -18,4 +19,10 @@ export default defineConfig({
   root,
   envDir: process.cwd(),
   publicDir: `${process.cwd()}/public`,
+  test: {
+    include: ["tests/unit/**/*.spec.tsx"],
+    exclude: ["**/*/__snapshots__/**"],
+    globals: true,
+    environment: "jsdom",
+  },
 });
