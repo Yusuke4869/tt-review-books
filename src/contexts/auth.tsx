@@ -9,12 +9,14 @@ import type { User } from "~/types/api";
 type UserContextType = {
   user: User | null;
   authenticated: boolean;
+  setUser: (user: User) => void;
   setAuthenticated: (authenticated: boolean) => void;
 };
 
 const AuthContext = createContext<UserContextType>({
   user: null,
   authenticated: false,
+  setUser: () => void 0,
   setAuthenticated: () => void 0,
 });
 
@@ -83,6 +85,7 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
       value={{
         user,
         authenticated,
+        setUser,
         setAuthenticated,
       }}
     >
