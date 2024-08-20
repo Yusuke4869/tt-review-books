@@ -5,7 +5,7 @@ type Props = {
   changePage: (page: number) => void;
 };
 
-const Pagination: FC<Props> = ({ currentPage, changePage }) => (
+export const Pagination: FC<Props> = ({ currentPage, changePage }) => (
   <div className="flex justify-center items-center gap-3 my-6">
     <button
       className={`h-10 rounded-md px-2 hover:bg-gray-200 ${currentPage === 1 ? "text-gray-300" : "text-black"}`}
@@ -29,5 +29,3 @@ const Pagination: FC<Props> = ({ currentPage, changePage }) => (
     </button>
   </div>
 );
-
-export default Pagination;
