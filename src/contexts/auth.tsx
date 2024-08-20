@@ -1,8 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 
-import Layout from "~/components/layout";
-
 import type { FC, ReactNode } from "react";
 import type { User } from "~/types/api";
 
@@ -73,12 +71,7 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
     getUser(cookie.token, setAuthenticated, setUser);
   }, [cookie.token]);
 
-  if (user === undefined)
-    return (
-      <Layout>
-        <p>Loading...</p>
-      </Layout>
-    );
+  if (user === undefined) return <p>Loading...</p>;
 
   return (
     <AuthContext.Provider
