@@ -9,7 +9,7 @@ import { useAuth } from "~/contexts/auth";
 import type { ChangeEvent, FC } from "react";
 import type { SubmitHandler } from "react-hook-form";
 
-import type { APIError, CreateUserResponse } from "~/types/api";
+import type { APIError, CreateUserResponse, UploadUserIconResponse } from "~/types/api";
 
 type Inputs = {
   name: string;
@@ -29,7 +29,7 @@ export const SignUpForm: FC = () => {
   const [image, setImage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const { setAuthenticated } = useAuth();
+  const { setAuthenticated, setUser } = useAuth();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const res = await fetch(`${import.meta.env.VITE_API_URL}/users`, {
@@ -66,6 +66,11 @@ export const SignUpForm: FC = () => {
             Authorization: `Bearer ${r.token}`,
           },
           body: formData,
+        }).then(async (res) => {
+          if (res.ok) {
+            const r = (await res.json()) as UploadUserIconResponse;
+            setUser({ name: data.name, iconUrl: r.iconUrl });
+          }
         });
       },
     });
