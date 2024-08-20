@@ -30,4 +30,5 @@ export type Review = {
   detail: string;
   review: string;
   reviewer: string;
+  isMine?: boolean;
 };
